@@ -1,0 +1,74 @@
+@startuml
+
+Object Text {
+# text_id
++ filename
++ year
+
+}
+
+object Paper {
+paper_title
+first_page
+last_page
+}
+
+object Book {
+book_title
+}
+
+object Chapter {
+chapter_title
+}
+
+object Person {
+# person_id
++ last_name
+first_name
+
+}
+
+object Publisher {
+# publisher_id
+}
+
+object Citation {
+# citation_id
++ text
++ cited_text
+
+}
+
+object Journal {
+# journal_id
++ journal_name
+
+}
+
+Text "1..1" -- "0..*" Text : Cites >
+(Text, Text) ..  Citation
+
+Person - Text : Writes >
+(Person, Text) .. PersonLookup
+
+object PersonLookup {
++ Person.person_id (FK)
++ Text.text_id (FK)
+role
+}
+
+object PublisherLookup {
+text_id
+publisher_id
+}
+
+Text <|-- Paper
+Text <|-- Chapter
+Text <|-- Book
+
+Chapter -- Book : In >
+Paper -- Journal : In >
+Publisher -- Book : Publishes >
+(Publisher, Book) .. PublisherLookup
+
+@enduml
