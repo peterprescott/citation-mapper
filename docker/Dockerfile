@@ -1,4 +1,4 @@
-FROM darribas/gds:4.1
+FROM jbindinga/java-notebook
 
 # so I have write permissions for mounted volume
 USER root
@@ -16,4 +16,5 @@ RUN jupyter labextension install @axlair/jupyterlab_vim \
      && jupyter labextension enable @axlair/jupyterlab_vim
 RUN jupyter labextension install @jupyterlab/toc
 
-
+# run jupyter lab
+CMD jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=

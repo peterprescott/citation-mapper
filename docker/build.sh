@@ -7,4 +7,4 @@ source ../.env
 
 docker build \
   -f ./Dockerfile \
-  -t ${BUILDER}/datascience-notebook .
+  -t ${BUILDER}/java-notebook .
